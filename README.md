@@ -19,7 +19,7 @@ El código que elaboré para el proyecto de esta extensión de Godot se divide e
 - Afterwards you can use the `predict(Array input_data)` method which returns the output values ​​of your ML model
 
 
-If you are only interested in using the "ONNXLoader" node in your game, all you need to do is copy the bin folder that is inside the demo folder and paste it inside your game project (this bin folder contains the necessary gdextension, .dll, .lib and .exp files). 
+If you are only interested in using the "ONNXLoader" node in your game, all you need to do is copy the bin folder and paste it inside your game project (this bin folder contains the necessary gdextension, .dll, .lib and .exp files). 
 
 
 ### onnx_loader.h
