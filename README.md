@@ -1,4 +1,4 @@
-# Godot ONNX IA Models Loader
+# Godot ONNX AI Models Loader
 Godot does not have a native tool to read pre-trained AI models in any format. This repository contains the project for a GDExtension to read and use pre-trained models stored in ONNX files.
 
 This extension adds a new “Node” called “ONNXLoader”. This Node has two main methods: `void load_model(String path)` and `Array predict(Array input data)`, which are used to load the model and then perform the prediction.
