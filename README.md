@@ -58,7 +58,7 @@ After that you will need to use the scons tool to compile inside the godot-cpp f
 
 
 > [!IMPORTANT]
-> Official Godot repository
+> Official Godot C++ repository
 > 
 > https://github.com/godotengine/godot-cpp
 >
