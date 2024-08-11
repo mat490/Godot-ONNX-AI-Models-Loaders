@@ -51,3 +51,21 @@ This class is responsible for declaring the functions needed to initialize and d
 
 ### register_types.cpp
 This implementation file, `register_types.cpp`, is part of the Godot extension and is responsible for registering and unregistering the `ONNXLoader` class in the Godot engine. It also contains the initialization function for the GDExtension library, which sets up the entry points needed to integrate the extension into Godot.
+
+### To compile the project
+First you need to clone the official godot repository into the folder that stores the "Godot-ONNX-AI-Models-Loaders" project
+After that you will need to use the scons tool to compile inside the godot-cpp folder, then you will need to compile the main project folder (where the SConstruct file provided in this repository is).
+
+
+> [!IMPORTANT]
+> Official Godot repository
+> 
+> https://github.com/godotengine/godot-cpp
+>
+
+> [!IMPORTANT]
+> I have taken the following tutorial as a basis to develop this project.
+>
+> https://www.youtube.com/watch?v=02KJouOjQ0c
+
+
