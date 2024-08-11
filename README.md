@@ -67,5 +67,8 @@ After that you will need to use the scons tool to compile inside the godot-cpp f
 > I have taken the following tutorial as a basis to develop this project.
 >
 > https://www.youtube.com/watch?v=02KJouOjQ0c
+>
+> [!NOTE]
+> All contributions are welcome. 🤓
 
 
