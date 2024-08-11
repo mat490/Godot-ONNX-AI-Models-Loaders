@@ -1,5 +1,5 @@
 [configuration]
-entry_symbol = "model_library_initmodel_library_init"
+entry_symbol = "model_library_init"
 compatibility_minimum = "4.2"
 
 [libraries]
