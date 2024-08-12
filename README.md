@@ -54,7 +54,7 @@ This implementation file, `register_types.cpp`, is part of the Godot extension a
 
 ### To compile the project
 First you need to clone the official godot repository into the folder that stores the "Godot-ONNX-AI-Models-Loaders" project
-After that you will need to use the scons tool to compile inside the godot-cpp folder, then you will need to compile the main project folder (where the SConstruct file provided in this repository is).
+After that you will need to use the scons tool to compile inside the godot-cpp folder, then you will need to compile the main project folder (where the SConstruct file provided in this repository (ONNXLoader) is).
 
 
 > [!IMPORTANT]
