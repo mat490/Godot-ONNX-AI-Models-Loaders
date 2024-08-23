@@ -4,7 +4,7 @@ Godot does not have a native tool to read pre-trained AI models in any format. T
 This extension adds a new “Node” called “ONNXLoader”. This Node has two main methods: `void load_model(String path)` and `Array predict(Array input data)`, which are used to load the model and then perform the prediction.
 To develop it I have used the onnxruntime library through Visual Studio 2022.
 
-El código que elaboré para el proyecto de esta extensión de Godot se divide en:
+The code I developed for this Godot extension project is divided into:
 
 - onnx_loader.h
 - onnx_loader.cpp
