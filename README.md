@@ -58,9 +58,7 @@ After that you will need to use the scons tool to compile inside the godot-cpp f
 
 ## How ONNX Loader adjusts the inputs and outputs of each model
 
-This C++ program dynamically adjusts the inputs and outputs for each loaded ONNX model. Here's an explanation of how it works:
-
-## 1. Model Loading
+### 1. Model Loading
 
 The `load_model` function loads an ONNX model:
 
@@ -72,7 +70,7 @@ void ONNXLoader::load_model(String model_path) {
 }
 ```
 
-## 2. Input Node Handling
+### 2. Input Node Handling
 
 After loading the model, it retrieves information about the input nodes:
 
@@ -85,7 +83,7 @@ for (size_t i = 0; i < num_input_nodes; ++i) {
 }
 ```
 
-## 3. Output Node Handling
+### 3. Output Node Handling
 
 Similarly, it obtains information about the output nodes:
 
@@ -98,7 +96,7 @@ for (size_t i = 0; i < num_output_nodes; ++i) {
 }
 ```
 
-## 4. Input Adjustment for Prediction
+### 4. Input Adjustment for Prediction
 
 In the `predict` function, the input data is adjusted:
 
@@ -112,7 +110,7 @@ std::vector<int64_t> input_node_dims = { 1, static_cast<int64_t>(input_tensor_va
 Ort::Value input_tensor = Ort::Value::CreateTensor<float>(memory_info, input_tensor_values.data(), input_tensor_values.size(), input_node_dims.data(), input_node_dims.size());
 ```
 
-## 5. Output Handling
+### 5. Output Handling
 
 After running the prediction, the output tensors are processed:
 
@@ -120,7 +118,7 @@ After running the prediction, the output tensors are processed:
 auto output_tensors = session->Run(Ort::RunOptions{ nullptr }, input_node_names.data(), ort_inputs.data(), ort_inputs.size(), output_node_names.data(), output_node_names.size());
 ```
 
-## 6. Flexible Output Processing
+### 6. Flexible Output Processing
 
 The ONNX Loader Node handles different types of outputs:
 
