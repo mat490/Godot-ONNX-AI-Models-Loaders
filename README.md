@@ -56,6 +56,92 @@ This implementation file, `register_types.cpp`, is part of the Godot extension a
 First you need to clone the official godot repository into the folder that stores the "Godot-ONNX-AI-Models-Loaders" project
 After that you will need to use the scons tool to compile inside the godot-cpp folder, then you will need to compile the main project folder (where the SConstruct file provided in this repository (ONNXLoader) is).
 
+## How ONNX Loader adjusts the inputs and outputs of each model
+# ONNX Loader in C++: Adjusting Inputs and Outputs
+
+This C++ program dynamically adjusts the inputs and outputs for each loaded ONNX model. Here's an explanation of how it works:
+
+## 1. Model Loading
+
+The `load_model` function loads an ONNX model:
+
+```cpp
+void ONNXLoader::load_model(String model_path) {
+    // ...
+    session = new Ort::Session(env, model_path_w.c_str(), session_options);
+    // ...
+}
+```
+
+## 2. Input Node Handling
+
+After loading the model, it retrieves information about the input nodes:
+
+```cpp
+size_t num_input_nodes = session->GetInputCount();
+input_node_names.resize(num_input_nodes);
+for (size_t i = 0; i < num_input_nodes; ++i) {
+    auto input_name = session->GetInputNameAllocated(i, allocator);
+    input_node_names[i] = input_name.release();
+}
+```
+
+## 3. Output Node Handling
+
+Similarly, it obtains information about the output nodes:
+
+```cpp
+size_t num_output_nodes = session->GetOutputCount();
+output_node_names.resize(num_output_nodes);
+for (size_t i = 0; i < num_output_nodes; ++i) {
+    auto output_name = session->GetOutputNameAllocated(i, allocator);
+    output_node_names[i] = output_name.release();
+}
+```
+
+## 4. Input Adjustment for Prediction
+
+In the `predict` function, the input data is adjusted:
+
+```cpp
+std::vector<float> input_tensor_values;
+for (int i = 0; i < input_data.size(); ++i) {
+    input_tensor_values.push_back(static_cast<float>(input_data[i]));
+}
+
+std::vector<int64_t> input_node_dims = { 1, static_cast<int64_t>(input_tensor_values.size()) };
+Ort::Value input_tensor = Ort::Value::CreateTensor<float>(memory_info, input_tensor_values.data(), input_tensor_values.size(), input_node_dims.data(), input_node_dims.size());
+```
+
+## 5. Output Handling
+
+After running the prediction, the output tensors are processed:
+
+```cpp
+auto output_tensors = session->Run(Ort::RunOptions{ nullptr }, input_node_names.data(), ort_inputs.data(), ort_inputs.size(), output_node_names.data(), output_node_names.size());
+```
+
+## 6. Flexible Output Processing
+
+The ONNX Loader Node handles different types of outputs:
+
+- For float tensors:
+  ```cpp
+  const float* floatarr = output_tensor.GetTensorData<float>();
+  ```
+
+- For integer tensors:
+  ```cpp
+  const int64_t* intarr = output_tensor.GetTensorData<int64_t>();
+  ```
+
+- For string tensors:
+  ```cpp
+  const char* result = output_tensor.GetTensorData<const char>();
+  ```
+
+This design allows the ONNX Loader to be flexible and handle various ONNX models with different input and output configurations, dynamically adjusting to the specific requirements of each loaded model.
+
 
 > [!IMPORTANT]
 > Official Godot C++ repository
