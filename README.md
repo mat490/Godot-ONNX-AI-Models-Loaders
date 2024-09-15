@@ -57,7 +57,6 @@ First you need to clone the official godot repository into the folder that store
 After that you will need to use the scons tool to compile inside the godot-cpp folder, then you will need to compile the main project folder (where the SConstruct file provided in this repository (ONNXLoader) is).
 
 ## How ONNX Loader adjusts the inputs and outputs of each model
-# ONNX Loader in C++: Adjusting Inputs and Outputs
 
 This C++ program dynamically adjusts the inputs and outputs for each loaded ONNX model. Here's an explanation of how it works:
 
